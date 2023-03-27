@@ -3,7 +3,7 @@ This Repository stores all Backend related Code
 
 # APIs
 
-# Customer APIs
+## Customer APIs
 
 **GET** /customers
 Fetches customer details of all the customer registered.
@@ -11,7 +11,10 @@ Fetches customer details of all the customer registered.
 
 **GET** /customers/:CustomerID
 Fetches customer details of particular Customer respective to the CustomerID.
-Example- **GET** {{url}}/customers/C_Id_202303270041444812147
+Example- 
+$$
+GET {{url}}/customers/C_Id_202303270041444812147
+$$
 
 
 **POST** /customers/
@@ -32,7 +35,10 @@ Request Sample Body-
 
 **POST** /customers/:CustomerID
 Updates the details of a particular customer with respect to CustomerID.
-Example- **POST** {{url}}/customers/C_Id_202303270041444812147
+Example- 
+$$
+POST {{url}}/customers/C_Id_202303270041444812147
+$$
 Request Sample Body-
 ```json
 {
@@ -47,7 +53,7 @@ Request Sample Body-
 ```
 
 
-# Account APIs
+## Account APIs
 
 **GET** /accounts
 Fetches account details of all accounts registered.
@@ -55,7 +61,10 @@ Fetches account details of all accounts registered.
 
 **GET** /accounts/:CustomerID
 Fetches account details of particular Customer respective to the CustomerID.
-Example- **GET** {{url}}/accounts/C_Id_202303270041444812147
+Example- 
+$$
+GET {{url}}/accounts/C_Id_202303270041444812147
+$$
 
 
 **POST** /accounts/
@@ -73,7 +82,10 @@ Request Sample Body-
 
 **POST** /accounts/:CustomerID
 Updates an existing account with respect to CustomerID
-Example- **POST** {{url}}/accounts/C_Id_202303270041444812147
+Example- 
+$$
+POST {{url}}/accounts/C_Id_202303270041444812147
+$$
 Request Sample Body-
 ```json
 {
@@ -88,7 +100,9 @@ Request Sample Body-
 **DELETE** /accounts/:CustomerID
 Deletes an existing account with respect to CustomerID
 Example-
-**DELETE** {{url}}/accounts/C_Id_202303270041444812147
+$$
+DELETE {{url}}/accounts/C_Id_202303270041444812147
+$$
 
 
 
