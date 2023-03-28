@@ -12,9 +12,9 @@ Fetches customer details of all the customer registered.
 **GET** /customers/:CustomerID
 Fetches customer details of particular Customer respective to the CustomerID.
 Example- 
-$$
-GET {{url}}/customers/C_Id_202303270041444812147
-$$
+
+**GET** {{url}}/customers/C_Id_202303270041444812147
+
 
 
 **POST** /customers/
@@ -36,9 +36,9 @@ Request Sample Body-
 **POST** /customers/:CustomerID
 Updates the details of a particular customer with respect to CustomerID.
 Example- 
-$$
-POST {{url}}/customers/C_Id_202303270041444812147
-$$
+
+**POST** {{url}}/customers/C_Id_202303270041444812147
+
 Request Sample Body-
 ```json
 {
@@ -62,9 +62,9 @@ Fetches account details of all accounts registered.
 **GET** /accounts/:CustomerID
 Fetches account details of particular Customer respective to the CustomerID.
 Example- 
-$$
-GET {{url}}/accounts/C_Id_202303270041444812147
-$$
+
+**GET** {{url}}/accounts/C_Id_202303270041444812147
+
 
 
 **POST** /accounts/
@@ -83,9 +83,9 @@ Request Sample Body-
 **POST** /accounts/:CustomerID
 Updates an existing account with respect to CustomerID
 Example- 
-$$
-POST {{url}}/accounts/C_Id_202303270041444812147
-$$
+
+**POST** {{url}}/accounts/C_Id_202303270041444812147
+
 Request Sample Body-
 ```json
 {
@@ -100,9 +100,9 @@ Request Sample Body-
 **DELETE** /accounts/:CustomerID
 Deletes an existing account with respect to CustomerID
 Example-
-$$
-DELETE {{url}}/accounts/C_Id_202303270041444812147
-$$
+
+**DELETE** {{url}}/accounts/C_Id_202303270041444812147
+
 
 
 

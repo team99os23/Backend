@@ -11,7 +11,7 @@ const accountSchema = new Schema(
             type: String,
             required: true
         },
-        CustomerId: {
+        CustomerID: {
             type: String,
             required: true
         },

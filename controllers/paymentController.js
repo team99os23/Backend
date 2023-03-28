@@ -1,8 +1,8 @@
 const Account = require("../models/account");
 const Customer = require("../models/customer");
-const MutualFund = require("../models/mutualFund");
-const Investment = require("../models/investment");
-const Insurance = require("../models/insurance");
+// const MutualFund = require("../models/mutualFund");
+// const Investment = require("../models/investment");
+// const Insurance = require("../models/insurance");
 
 const initialise_transaction = async (req, res)=>{
         
@@ -19,8 +19,8 @@ const initialise_transaction = async (req, res)=>{
     const senderAccount = await Account.findOne(senderAccountSearchParams);
     const receiverAccount = await Account.findOne(receiverAccountSearchParams);
 
-    const senderCustomerDetailsParams = {CustomerId : senderAccount ? senderAccount.CustomerId : ""};
-    const receiverCustomerDetailsParams = {CustomerId : receiverAccount ? receiverAccount.CustomerId : ""};
+    const senderCustomerDetailsParams = {CustomerID : senderAccount ? senderAccount.CustomerID : ""};
+    const receiverCustomerDetailsParams = {CustomerID : receiverAccount ? receiverAccount.CustomerID : ""};
 
     const senderCustomer = await Customer.findOne(senderCustomerDetailsParams);
     const receiverCustomer = await Customer.findOne(receiverCustomerDetailsParams);
@@ -71,12 +71,12 @@ const initialise_investment = async (req, res)=>{
     const account = await Account.findOne(accountSearchParams);
     
     // fetching customer details for name matching
-    const customerDetailsParams = {CustomerId : account ? account.CustomerId : ""};
+    const customerDetailsParams = {CustomerID : account ? account.CustomerID : ""};
     const customer = await Customer.findOne(customerDetailsParams);
 
     // finding the Investment Plan in which the amount has to be deposited
     const investmentSearchParams = {
-        CustomerId : account ? account.CustomerId : "",
+        CustomerID : account ? account.CustomerID : "",
         InvestmentId: req.body.InvestmentId
     };
     const investment = await Investment.findOne(investmentSearchParams);
@@ -125,13 +125,13 @@ const initialise_mutual_fund = async (req, res)=>{
     const account = await Account.findOne(accountSearchParams);
     
     // fetching customer details for name matching
-    const customerDetailsParams = {CustomerId : account ? account.CustomerId : ""};
+    const customerDetailsParams = {CustomerID : account ? account.CustomerID : ""};
     const customer = await Customer.findOne(customerDetailsParams);
 
     // finding the Mutual Fund Plan in which the amount has to be deposited
     const mutualFundSearchParams = {
         MutualFundId : req.body.MutualFundId,
-        CustomerId : account ? account.CustomerId : ""
+        CustomerID : account ? account.CustomerID : ""
     }
     const mutualFund = await MutualFund.findOne(mutualFundSearchParams);
 
@@ -180,13 +180,13 @@ const initialise_insurance = async (req, res)=>{
     const account = await Account.findOne(accountSearchParams);
     
     // fetching customer details for name matching
-    const customerDetailsParams = {CustomerId : account ? account.CustomerId : ""};
+    const customerDetailsParams = {CustomerID : account ? account.CustomerID : ""};
     const customer = await Customer.findOne(customerDetailsParams);
 
     // finding insurance in which deposit has to be made
     const insuranceSearchParams = {
         InsuranceId : req.body.InsuranceId,
-        CustomerId : account ? account.CustomerId : ""
+        CustomerID : account ? account.CustomerID : ""
     }
     const insurance = await Insurance.findOne(insuranceSearchParams);
 
