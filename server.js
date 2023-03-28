@@ -10,6 +10,7 @@ const payment_routes = require("./routes/paymentRoutes");
 
 const app = express();
 
+const dbURI = process.env.MONGODB_URI;
 
 // connecting to mongoDB Atlas server
 mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
