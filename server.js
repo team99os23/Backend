@@ -15,7 +15,7 @@ const app = express();
 mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
 .then((result)=>{
     app.listen(3001);
-    console.log("Server Running On Port 4000");
+    console.log("Server Running On Port 3001");
 })
 .catch((err)=>{
     console.log(err);
