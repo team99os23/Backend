@@ -1,8 +1,8 @@
 const Account = require("../models/account");
 const Customer = require("../models/customer");
-// const MutualFund = require("../models/mutualFund");
-// const Investment = require("../models/investment");
-// const Insurance = require("../models/insurance");
+const MutualFund = require("../models/mutualFund");
+const Investment = require("../models/investment");
+const Insurance = require("../models/insurance");
 
 const initialise_transaction = async (req, res)=>{
         
