@@ -13,7 +13,6 @@ function createID(){
 
 const create_insurance = async (req, res) => {
   const {
-    InsuranceID,
     CustomerID,
     InsuranceType,
     InsuranceName,
@@ -46,7 +45,7 @@ const create_insurance = async (req, res) => {
 const get_details = async (req, res) => {
   let account;
   try {
-    account = await Insurance.findOne({ CustomerID: req.params['id'] });
+    account = await Insurance.findOne({ InsuranceID: req.body.InsuranceID });
     console.log(account);
     if (account == null) {
       res.status(404).json({ message: "Cannot find account" });
@@ -68,10 +67,10 @@ const account_index = async (req, res) => {
 
 const update_insurance_type = async (req, res) => {
   const InsuranceType = req.body.InsuranceType;
-  const CustomerID = req.params['id'];
+  const InsuranceID = req.body.InsuranceID;
 
   try {
-    const filter = { CustomerID: CustomerID };
+    const filter = { InsuranceID: InsuranceID };
     const update = { InsuranceType: InsuranceType };
     const options = { new: true };
     const updatedAccount = await Insurance.findOneAndUpdate(

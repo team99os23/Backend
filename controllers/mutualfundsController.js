@@ -31,10 +31,10 @@ const create_mutualfunds = async (req, res) => {
 
 const update_mutualfunds = async (req, res) => {
   const Amount = req.body.Amount;
-  const CustomerID = req.params['id'];
+  const MutualFundsID = req.body.MutualFundsID;
 
   try {
-    const filter = { CustomerID: CustomerID };
+    const filter = { MutualFundsID: MutualFundsID };
     const update = { Amount: Amount };
     const options = { new: true };
     const updatedAccount = await MutualFunds.findOneAndUpdate(

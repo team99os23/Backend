@@ -21,7 +21,7 @@ function getMaturityDate(){
 }
 
 const create_investment = async (req,res) => {
-    const { InvestmentID, CustomerID, InvestmentType, Amount, startDate, MaturityDate} = req.body
+    const { CustomerID, InvestmentType, Amount, startDate} = req.body;
 
     if(!InvestmentID || !CustomerID || !startDate){
         return res.status(400).json({ message: 'Invalid request body' });
@@ -41,7 +41,7 @@ const create_investment = async (req,res) => {
 const get_details = async (req, res)=>{
     let account
     try {
-      account = await Investment.findOne({ CustomerID: req.params['id'] });
+      account = await Investment.findOne({ InvestmentID: req.body.InvestmentID });
       console.log(account);
       if (account == null) {
         res.status(404).json({ message: "Cannot find account" });
@@ -63,10 +63,10 @@ const account_index = async (req,res) => {
 
 const update_investment_type = async (req, res)=>{
     const InvestmentType = req.body.InvestmentType;
-    const CustomerID = req.params['id'];
+    const InvestmentID = req.body.InvestmentID;
   
     try {
-      const filter = { CustomerID: CustomerID };
+      const filter = { InvestmentID: InvestmentID };
       const update = { InvestmentType: InvestmentType};
       const options = { new: true };
       const updatedAccount = await Investment.findOneAndUpdate(filter, update, options);
@@ -82,7 +82,7 @@ const update_investment_type = async (req, res)=>{
 }
 
 const delete_investment = async (req, res)=> {
- const CustomerID = req.params["id"];
+ const InvestmentID = req.body.InvestmentID;
   
     try {
       const deletedAccount = await Investment.findOneAndDelete({ InvestmentID: InvestmentID });
