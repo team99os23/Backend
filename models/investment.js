@@ -45,9 +45,9 @@ InvestmentSchema.pre("save", function (next) {
     .toString()
     .padStart(4, "0");
 
-  const CustomerID = `C_Id_${year}${month}${day}${hours}${minutes}${seconds}${milliseconds}${randomDigits}`;
+  const InvestmentID = `INV_Id_${year}${month}${day}${hours}${minutes}${seconds}${milliseconds}${randomDigits}`;
 
-  this.CustomerID = CustomerID;
+  this.InvestmentID = InvestmentID;
 
   next();
 });

@@ -63,7 +63,11 @@ const account_index = async (req,res) => {
 
 const update_investment_type = async (req, res)=>{
     const InvestmentType = req.body.InvestmentType;
+<<<<<<< HEAD
     const InvestmentID = req.body.InvestmentID;
+=======
+    const InvestmentID = req.params['id'];
+>>>>>>> 1cd05d3b096c415fac193532cf19879e61626b20
   
     try {
       const filter = { InvestmentID: InvestmentID };

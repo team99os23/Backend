@@ -53,9 +53,9 @@ InsuranceSchema.pre("save", function (next) {
     .toString()
     .padStart(4, "0");
 
-  const CustomerID = `C_Id_${year}${month}${day}${hours}${minutes}${seconds}${milliseconds}${randomDigits}`;
+  const InsuranceID = `INS_Id_${year}${month}${day}${hours}${minutes}${seconds}${milliseconds}${randomDigits}`;
 
-  this.CustomerID = CustomerID;
+  this.InsuranceID = InsuranceID;
 
   next();
 });

@@ -67,7 +67,11 @@ const account_index = async (req, res) => {
 
 const update_insurance_type = async (req, res) => {
   const InsuranceType = req.body.InsuranceType;
+<<<<<<< HEAD
   const InsuranceID = req.body.InsuranceID;
+=======
+  const InsuranceID = req.params['id'];
+>>>>>>> 1cd05d3b096c415fac193532cf19879e61626b20
 
   try {
     const filter = { InsuranceID: InsuranceID };
