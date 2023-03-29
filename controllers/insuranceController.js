@@ -68,10 +68,10 @@ const account_index = async (req, res) => {
 
 const update_insurance_type = async (req, res) => {
   const InsuranceType = req.body.InsuranceType;
-  const CustomerID = req.params['id'];
+  const InsuranceID = req.params['id'];
 
   try {
-    const filter = { CustomerID: CustomerID };
+    const filter = { InsuranceID: InsuranceID };
     const update = { InsuranceType: InsuranceType };
     const options = { new: true };
     const updatedAccount = await Insurance.findOneAndUpdate(

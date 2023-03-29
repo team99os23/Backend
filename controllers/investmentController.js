@@ -63,10 +63,10 @@ const account_index = async (req,res) => {
 
 const update_investment_type = async (req, res)=>{
     const InvestmentType = req.body.InvestmentType;
-    const CustomerID = req.params['id'];
+    const InvestmentID = req.params['id'];
   
     try {
-      const filter = { CustomerID: CustomerID };
+      const filter = { InvestmentID: InvestmentID };
       const update = { InvestmentType: InvestmentType};
       const options = { new: true };
       const updatedAccount = await Investment.findOneAndUpdate(filter, update, options);
