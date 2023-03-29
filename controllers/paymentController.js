@@ -1,6 +1,6 @@
 const Account = require("../models/account");
 const Customer = require("../models/customer");
-const MutualFund = require("../models/mutualFund");
+const MutualFund = require("../models/mutualFunds");
 const Investment = require("../models/investment");
 const Insurance = require("../models/insurance");
 
