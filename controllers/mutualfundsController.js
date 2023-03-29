@@ -31,11 +31,7 @@ const create_mutualfunds = async (req, res) => {
 
 const update_mutualfunds = async (req, res) => {
   const Amount = req.body.Amount;
-<<<<<<< HEAD
   const MutualFundsID = req.body.MutualFundsID;
-=======
-  const MutualFundsID = req.params['id'];
->>>>>>> 1cd05d3b096c415fac193532cf19879e61626b20
 
   try {
     const filter = { MutualFundsID: MutualFundsID };

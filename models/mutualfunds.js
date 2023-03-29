@@ -48,6 +48,11 @@ MutualFundsSchema.pre("save", function (next) {
 
   next();
 });
-const MutualFunds = mongoose.model("MutualFunds", MutualFundsSchema);
+let MutualFunds;
+
+if(mongoose.models.MutualFunds)
+MutualFunds = mongoose.model("MutualFunds");
+else
+MutualFunds = mongoose.model("MutualFunds", MutualFundsSchema); 
 
 module.exports = MutualFunds;

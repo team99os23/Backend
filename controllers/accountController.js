@@ -10,6 +10,7 @@ const create_account = (req, res) => {
             res.send(result);
         })
         .catch((err) => {
+            res.send(err);
             console.log(err);
         })
 }
@@ -21,6 +22,7 @@ const get_details = (req, res) => {
             else res.send("Could Not Find Record");
         })
         .catch((err) => {
+            res.send(err);
             console.log(err);
         })
 }
@@ -31,6 +33,7 @@ const update_account_type = (req, res) => {
             res.send(result);
         })
         .catch((err) => {
+            res.send(err);
             console.log(err);
         })
 }
