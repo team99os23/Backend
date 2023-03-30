@@ -4,7 +4,7 @@ const Customer = require("../models/customer")
 const customer_details = async (req, res) => {
     let customer;
     try {
-      customer = await Customer.findOne({ "CustomerID": req.params['id'] });
+      customer = await Customer.findOne({ CustomerID: req.body.CustomerID });
       console.log(customer);
       if (customer == null) {
         res.status(404).json({ message: 'Cannot find customer' });
@@ -60,11 +60,11 @@ const customer_create = async (req, res) => {
 const customer_update = async (req, res) => {
 
   try {
-    const CustomerID = req.params["id"];
+    const CustomerID = req.body.CustomerID;
     const Name = req.body.Name;
     const DateofBirth = req.body.DateofBirth;
     const Gender = req.body.Gender;
-    const AadhaarNumber = req.body.Address;
+    const AadhaarNumber = req.body.AadhaarNumber;
     const ContactNumber = req.body.ContactNumber;
     const EmailID = req.body.EmailID;
     const filter = { CustomerID: CustomerID };
@@ -81,17 +81,6 @@ const customer_update = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 }
-
-// const customer_details = async (req, res) => {
-//     await Customer(req, res);
-//     // console.log(res.customer);
-//     // res.json(res.customer);
-// };
-
-// const account_details = (getAccount, async (req, res) => {
-//   res.json(res.account);
-// });
-
 
 module.exports = {
     customer_index,

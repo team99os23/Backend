@@ -23,7 +23,7 @@ const create_insurance = async (req, res) => {
       Maturity,
     } = req.body;
 
-    if (!InsuranceID || !CustomerID || !InsuranceName) {
+    if ( !CustomerID || !InsuranceName) {
       return res.status(400).json({ message: "Invalid request body" });
     }
 

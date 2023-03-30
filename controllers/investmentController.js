@@ -43,7 +43,7 @@ const create_investment = async (req, res) => {
   try {
     const { CustomerID, InvestmentType, Amount, startDate } = req.body;
 
-    if (!InvestmentID || !CustomerID || !startDate) {
+    if (!CustomerID || !startDate) {
       return res.status(400).json({ message: "Invalid request body" });
     }
 

@@ -1,6 +1,35 @@
 const Customer = require("../models/customer");
 const MutualFunds = require("../models/mutualfunds");
 
+function createID() {
+  const alpha_numeric = [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+  ];
+  let id = "";
+  for (let i = 0; i < 10; i++) {
+    const index = Math.floor(Math.random() * 18);
+    id += alpha_numeric[index];
+  }
+  return id;
+}
+
 const create_mutualfunds = async (req, res) => {
   try {
     const {
@@ -11,7 +40,7 @@ const create_mutualfunds = async (req, res) => {
       PoolDescription,
     } = req.body;
 
-    if (!MutualFundsName || !MutualFundsID || !CustomerID) {
+    if (!MutualFundsName || !CustomerID) {
       return res.status(400).json({ message: "Invalid request body" });
     }
 
@@ -21,7 +50,7 @@ const create_mutualfunds = async (req, res) => {
     }
 
     const mutualfunds = new MutualFunds({
-      MutualFundsID,
+      MutualFundsID: createID(),
       CustomerID,
       MutualFundsName,
       Amount,
