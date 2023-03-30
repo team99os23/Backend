@@ -4,7 +4,7 @@ const Customer = require("../models/customer")
 const customer_details = async (req, res) => {
     let customer;
     try {
-      customer = await Customer.findOne({ "CustomerID": req.params['id'] });
+      customer = await Customer.findOne({ CustomerID: req.body.CustomerID });
       console.log(customer);
       if (customer == null) {
         res.status(404).json({ message: 'Cannot find customer' });
@@ -25,12 +25,21 @@ const customer_index = async (req, res) => {
 }
 
 const customer_create = async (req, res) => {
-    const { Name, DateofBirth, Gender, Address, AadhaarNumber, ContactNumber, EmailID } = req.body;
-    
+  try {
+    const {
+      Name,
+      DateofBirth,
+      Gender,
+      Address,
+      AadhaarNumber,
+      ContactNumber,
+      EmailID,
+    } = req.body;
+
     if (!Name || !EmailID || !AadhaarNumber) {
-      return res.status(400).json({ message: 'Invalid request body' });
+      return res.status(400).json({ message: "Invalid request body" });
     }
-  
+
     const customer = new Customer({
       Name,
       DateofBirth,
@@ -40,25 +49,24 @@ const customer_create = async (req, res) => {
       ContactNumber,
       EmailID,
     });
-  
-    try {
-      const newCustomer = await customer.save();
-      res.status(201).json(newCustomer);
-    } catch (err) {
-      res.status(500).json({ message: err.message });
-    }
+
+    const newCustomer = await customer.save();
+    res.status(201).json(newCustomer);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 }
 
 const customer_update = async (req, res) => {
-  const CustomerID = req.params['id'];
-  const Name = req.body.Name;
-  const DateofBirth = req.body.DateofBirth;
-  const Gender = req.body.Gender;
-  const AadhaarNumber = req.body.Address
-  const ContactNumber = req.body.ContactNumber
-  const EmailID = req.body.EmailID;
 
   try {
+    const CustomerID = req.body.CustomerID;
+    const Name = req.body.Name;
+    const DateofBirth = req.body.DateofBirth;
+    const Gender = req.body.Gender;
+    const AadhaarNumber = req.body.AadhaarNumber;
+    const ContactNumber = req.body.ContactNumber;
+    const EmailID = req.body.EmailID;
     const filter = { CustomerID: CustomerID };
     const update = { Name: Name, DateofBirth: DateofBirth, Gender: Gender, AadhaarNumber: AadhaarNumber, ContactNumber: ContactNumber, EmailID: EmailID };
     const options = { new: true };
@@ -73,17 +81,6 @@ const customer_update = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 }
-
-// const customer_details = async (req, res) => {
-//     await Customer(req, res);
-//     // console.log(res.customer);
-//     // res.json(res.customer);
-// };
-
-// const account_details = (getAccount, async (req, res) => {
-//   res.json(res.account);
-// });
-
 
 module.exports = {
     customer_index,

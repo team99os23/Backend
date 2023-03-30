@@ -1,4 +1,5 @@
 const Insurance = require('../models/insurance')
+const Customer = require("../models/customer");
 
 //creates a random string of 10 characters
 function createID(){
@@ -12,29 +13,35 @@ function createID(){
 }
 
 const create_insurance = async (req, res) => {
-  const {
-    CustomerID,
-    InsuranceType,
-    InsuranceName,
-    Description,
-    MonthlyInstallment,
-    Maturity
-  } = req.body;
-
-  if (!InsuranceID || !CustomerID || !InsuranceName) {
-    return res.status(400).json({ message: "Invalid request body" });
-  }
-
-  const insurance = new Insurance({
-    InsuranceID: createID(),
-    CustomerID,
-    InsuranceType,
-    InsuranceName,
-    Description,
-    MonthlyInstallment,
-    Maturity
-  });
   try {
+    const {
+      CustomerID,
+      InsuranceType,
+      InsuranceName,
+      Description,
+      MonthlyInstallment,
+      Maturity,
+    } = req.body;
+
+    if ( !CustomerID || !InsuranceName) {
+      return res.status(400).json({ message: "Invalid request body" });
+    }
+
+    const ans = await Customer.findOne({ CustomerID: req.body.CustomerID });
+    if (!ans) {
+      throw Error("No customer found. Please create new customer!");
+    }
+
+    const insurance = new Insurance({
+      InsuranceID: createID(),
+      CustomerID,
+      InsuranceType,
+      InsuranceName,
+      Description,
+      MonthlyInstallment,
+      Maturity,
+    });
+
     const newInsurance = await insurance.save();
     res.status(201).json(newInsurance);
   } catch (err) {
@@ -66,10 +73,10 @@ const account_index = async (req, res) => {
 };
 
 const update_insurance_type = async (req, res) => {
-  const InsuranceType = req.body.InsuranceType;
-  const InsuranceID = req.body.InsuranceID;
-
+  
   try {
+    const InsuranceType = req.body.InsuranceType;
+    const InsuranceID = req.body.InsuranceID;
     const filter = { InsuranceID: InsuranceID };
     const update = { InsuranceType: InsuranceType };
     const options = { new: true };
@@ -94,9 +101,9 @@ const update_insurance_type = async (req, res) => {
 };
 
 const delete_insurance = async (req, res) => {
-  const CustomerID = req.params['id'];
-
+  
   try {
+    const CustomerID = req.params['id'];
     const deletedAccount = await Insurance.findOneAndDelete({
       CustomerID: CustomerID,
     });
