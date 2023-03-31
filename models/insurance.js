@@ -31,9 +31,8 @@ const InsuranceSchema = new Schema(
     Maturity: {
       type: Number,
       required: true,
-    },
-  },
-  { timestamps: true }
+    }
+  }, { timestamps: true }
 );
 
 InsuranceSchema.pre("save", function (next) {
