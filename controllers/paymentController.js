@@ -3,19 +3,16 @@ const Customer = require("../models/customer");
 const MutualFund = require("../models/mutualfunds");
 const Investment = require("../models/investment");
 const Insurance = require("../models/insurance");
-const Credit = require("../models/credit");
-const Debit = require("../models/debit");
-const Transaction = require("../models/transaction");
 
-function randomString(length){
-    const characterString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let randomString = "";
-    for(let i=0;i<length;i++){
-        const index = Math.floor(Math.random()*characterString.length);
-        randomString += characterString[index];
-    }
-    return randomString;
-}
+// function randomString(length){
+//     const characterString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+//     let randomString = "";
+//     for(let i=0;i<length;i++){
+//         const index = Math.floor(Math.random()*characterString.length);
+//         randomString += characterString[index];
+//     }
+//     return randomString;
+// }
 
 // function dateNow(){
 //     const date = new Date();
