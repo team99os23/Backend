@@ -28,10 +28,18 @@ const InsuranceSchema = new Schema(
       type: Number,
       required: true,
     },
-    Maturity: {
-      type: Number,
+    MaturityDate: {
+      type: String,
       required: true,
     },
+    startDate: {
+      type: String,
+      required: true
+    },
+    Amount: {
+      type: Number,
+      required: true
+    }
   },
   { timestamps: true }
 );

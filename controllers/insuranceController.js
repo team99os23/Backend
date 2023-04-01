@@ -20,7 +20,9 @@ const create_insurance = async (req, res) => {
       InsuranceName,
       Description,
       MonthlyInstallment,
-      Maturity,
+      MaturityDate,
+      Amount,
+      startDate
     } = req.body;
 
     if ( !CustomerID || !InsuranceName) {
@@ -39,7 +41,9 @@ const create_insurance = async (req, res) => {
       InsuranceName,
       Description,
       MonthlyInstallment,
-      Maturity,
+      MaturityDate,
+      Amount,
+      startDate
     });
 
     const newInsurance = await insurance.save();
@@ -103,7 +107,7 @@ const update_insurance_type = async (req, res) => {
 const delete_insurance = async (req, res) => {
   
   try {
-    const CustomerID = req.params['id'];
+    const CustomerID = req.body.CustomerID;
     const deletedAccount = await Insurance.findOneAndDelete({
       CustomerID: CustomerID,
     });

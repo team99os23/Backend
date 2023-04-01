@@ -1,22 +1,33 @@
 const Account = require("../models/account");
 
-const create_account = (req, res) => {
+const create_account = async (req, res) => {
 
-    console.log(req.body);
-
-    const account = new Account(req.body);
-    account.save()
-        .then((result) => {
-            res.send(result);
-        })
-        .catch((err) => {
-            res.send(err);
-            console.log(err);
-        })
+    try {
+        const existingAccount = await Account.findOne({AccountNumber : req.body.AccountNumber});
+        const existingAccountCheck = existingAccount ? true : false;
+    
+        if(!existingAccountCheck){
+            const account = new Account(req.body);
+            account.save()
+            .then((result) => {
+                res.send(result);
+            })
+            .catch((err) => {
+                res.send(err);
+                console.log(err);
+            })
+        }
+        else{
+            res.send("ACCOUNT ALREADY EXISTS");
+        }
+    }
+    catch (err) {
+        console.log(err);
+    }
 }
 
 const get_details = (req, res) => {
-    Account.find({ AccountNumber: req.body.AccountNumber, IFSCCode: req.body.IFSCCode })
+    Account.findOne({ AccountNumber: req.body.AccountNumber, IFSCCode: req.body.IFSCCode })
         .then((result) => {
             if (result) res.send(result);
             else res.send("Could Not Find Record");
