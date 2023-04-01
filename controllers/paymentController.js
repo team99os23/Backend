@@ -154,7 +154,7 @@ const initialise_investment = async (req, res) => {
             .then((resultAccount) => {
                 Investment.updateOne(investmentSearchParams, {Amount: investment.Amount + paymentAmount})
                 .then((resultInvestment) => {
-                    res.send("Deposit Successful");
+                    res.status(201).json({message : "Deposit Successful"});
                 })
                 .catch((err) => {
                     // can revert changes made on account
@@ -166,10 +166,11 @@ const initialise_investment = async (req, res) => {
             });
         }
         else {
-            res.send("Condition Not Passed");
+            throw Error("CONDITION NOT PASSED");
         }
     } catch (err) {
         console.log(err);
+        res.status(501).json({message: err.message});
     }
 };
 
@@ -214,11 +215,11 @@ const initialise_mutual_fund = async (req, res) => {
             .then((resultAccount) => {
                 MutualFund.updateOne(mutualFundSearchParams, {Amount: mutualFund.Amount + paymentAmount})
                 .then((resultMutualFund) => {
-                    res.send("Deposit to mutual fund successful");
+                    res.status(201).json({message : "Deposit to mutual fund successful"});
                 })
                 .catch((err) => {
                     // can revert changes on account
-                    res.send("Revert Changes !!!");
+                    throw Error("Revert Changes !!!");
                     console.log(err);
                 });
             })
@@ -227,10 +228,11 @@ const initialise_mutual_fund = async (req, res) => {
             });
         }
         else {
-            res.send("Condtion Not Passed");
+            throw Error("CONDITION NOT PASSED");
         }
     } catch (err) {
         console.log(err);
+        res.status(501).json({message: err.message});
     }
 };
 
@@ -275,11 +277,11 @@ const initialise_insurance = async (req, res) => {
             .then((resultAccount) => {
                 Insurance.updateOne(insuranceSearchParams, {Amount: insurance.Amount + paymentAmount})
                 .then((resultInsurance) => {
-                    res.send("Deposit to insurance Successful");
+                    res.status(201).json({message : "Deposit to insurance Successful"});
                 })
                 .catch((err) => {
-                    res.send("Revert Changes!!!");
                     console.log(err);
+                    throw Error("Revert Changes!!!");
                 });
             })
             .catch((err) => {
@@ -287,10 +289,11 @@ const initialise_insurance = async (req, res) => {
             });
         }
         else {
-            res.send("Condition Not Passed");
+            throw Error("CONDITION NOT PASSED");
         }
     } catch (err) {
         console.log(err);
+        res.status(501).json({message: err.message});
     }
 };
 
