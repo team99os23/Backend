@@ -3,6 +3,28 @@ const Customer = require("../models/customer");
 const MutualFund = require("../models/mutualfunds");
 const Investment = require("../models/investment");
 const Insurance = require("../models/insurance");
+const Credit = require("../models/credit");
+const Debit = require("../models/debit");
+const Transaction = require("../models/transaction");
+
+function randomString(length){
+    const characterString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let randomString = "";
+    for(let i=0;i<length;i++){
+        const index = Math.floor(Math.random()*characterString.length);
+        randomString += characterString[index];
+    }
+    return randomString;
+}
+
+// function dateNow(){
+//     const date = new Date();
+//     const year = date.getFullYear();
+//     const month = date.getMonth();
+//     const day = date.getDate();
+//     return `${day}/${month}/${year}`;
+// }
+
 
 const initialise_transaction = async (req, res) => {
     try {
@@ -48,7 +70,33 @@ const initialise_transaction = async (req, res) => {
             .then((resultSender) => {
                 Account.updateOne(receiverAccountSearchParams, {Balance: receiverAccount.Balance + paymentAmount})
                 .then((resultReciver) => {
-                    res.send("Payment Successful");
+                    // const newDebitDetails = {
+                    //     DebitTransactionID : randomString(20),
+                    //     SenderAccountNumber : senderAccountSearchParams.AccountNumber,
+                    //     SenderIFSCCode : senderAccountSearchParams.IFSCCode,
+                    //     TransactionDate : dateNow(),
+                    //     Description : req.body.Description
+                    // }
+                    // const newCreditDetails = {
+                    //     CreditTransactionID : randomString(20),
+                    //     RecipientAccountNumber : receiverAccountSearchParams.AccountNumber,
+                    //     RecipientIFSCCode : receiverAccountSearchParams.IFSCCode,
+                    //     TransactionDate : dateNow(),
+                    //     Description : req.body.Description
+                    // }
+                    // const newTransactionDetails = {
+                    //     TransactionID : randomString(20),
+                    //     DebitTransactionID : newDebitDetails.DebitTransactionID,
+                    //     CreditTransactionID : newCreditDetails.CreditTransactionID,
+                    //     TransactionDate : dateNow(),
+                    //     Description : req.body.Description 
+                    // }
+
+                    // const newDebit = new Debit(newDebitDetails);
+                    // const newCredit = new Credit(newCreditDetails);
+                    // const newTransaction = new Transaction(newTransactionDetails);
+
+                    res.status(201).json({message : "PAYMENT SUCCESSFUL"});
                 })
                 .catch((err) => {
                     console.log(err);
@@ -60,10 +108,11 @@ const initialise_transaction = async (req, res) => {
             });
         }
         else {
-            res.send("Condition Not Passed");
+            throw Error("CONDITION NOT PASSED");
         }
     } catch (err) {
         console.log(err);
+        res.status(501).json({message: err.message});
     }
 };
 
