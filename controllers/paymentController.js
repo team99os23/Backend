@@ -219,8 +219,8 @@ const initialise_mutual_fund = async (req, res) => {
                 })
                 .catch((err) => {
                     // can revert changes on account
-                    throw Error("Revert Changes !!!");
                     console.log(err);
+                    throw Error("Revert Changes !!!");
                 });
             })
             .catch((err) => {
