@@ -132,7 +132,7 @@ const initialise_investment = async (req, res) => {
         // finding the Investment Plan in which the amount has to be deposited
         const investmentSearchParams = {
             CustomerID: account ? account.CustomerID : "",
-            InvestmentId: req.body.InvestmentId
+            InvestmentID: req.body.InvestmentID
         };
         const investment = await Investment.findOne(investmentSearchParams);
 
@@ -145,6 +145,12 @@ const initialise_investment = async (req, res) => {
         const nameCheck = req.body.CustomerName.toLowerCase() === (customer ? customer.Name : "").toLowerCase() ? true : false;
         const investmentCheck = investment ? true : false;
 
+        console.log(paymentAmountCheck);
+        console.log(accountCheck);
+        console.log(nameCheck);
+        console.log(investmentCheck);
+        console.log(investment);
+        console.log(investmentSearchParams);
         // combining all different checks together
         const proceedPayment = paymentAmountCheck && accountCheck && nameCheck && investmentCheck;
 
@@ -192,7 +198,7 @@ const initialise_mutual_fund = async (req, res) => {
 
         // finding the Mutual Fund Plan in which the amount has to be deposited
         const mutualFundSearchParams = {
-            MutualFundId: req.body.MutualFundId,
+            MutualFundID: req.body.MutualFundID,
             CustomerID: account ? account.CustomerID : ""
         };
         const mutualFund = await MutualFund.findOne(mutualFundSearchParams);
@@ -205,6 +211,8 @@ const initialise_mutual_fund = async (req, res) => {
         const accountCheck = account ? true : false;
         const nameCheck = req.body.CustomerName.toLowerCase() === (customer ? customer.Name : "").toLowerCase() ? true : false;
         const mutualFundCheck = mutualFund ? true : false;
+
+
 
         // combining all different checks together
         const proceedPayment = paymentAmountCheck && accountCheck && nameCheck && mutualFundCheck;
@@ -254,7 +262,7 @@ const initialise_insurance = async (req, res) => {
 
         // finding insurance in which deposit has to be made
         const insuranceSearchParams = {
-            InsuranceId: req.body.InsuranceId,
+            InsuranceID: req.body.InsuranceID,
             CustomerID: account ? account.CustomerID : ""
         };
         const insurance = await Insurance.findOne(insuranceSearchParams);
@@ -268,6 +276,10 @@ const initialise_insurance = async (req, res) => {
         const nameCheck = req.body.CustomerName.toLowerCase() === (customer ? customer.Name : "").toLowerCase() ? true : false;
         const insuranceCheck = insurance ? true : false;
 
+        console.log(insurance);
+        console.log(insuranceCheck);
+        console.log(insuranceSearchParams);
+        
         // combining all different checks together
         const proceedPayment = paymentAmountCheck && accountCheck && nameCheck && insuranceCheck;
 
